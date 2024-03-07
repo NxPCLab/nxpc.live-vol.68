@@ -1,13 +1,4 @@
-window.onload = function () {
-  // この中に、ローディングが完全に終わった後の処理を書く
-  console.log("ページのすべてのリソースが読み込まれました！");
 
-  // 例: ローディング画面を非表示にする
-  const loadingScreen = document.getElementById('loading');
-  if (loadingScreen) {
-    loadingScreen.style.display = 'none';
-  }
-};
 
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
@@ -22,6 +13,16 @@ const app = createApp({
     this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
     this.performers = await this.fetchCSVData("./data/artist-info.csv");
     await this.getPerformerImage("./img/artist/");
+    window.onload = function () {
+      // この中に、ローディングが完全に終わった後の処理を書く
+      console.log("ページのすべてのリソースが読み込まれました！");
+    
+      // 例: ローディング画面を非表示にする
+      const loadingScreen = document.getElementById('loading');
+      if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+      }
+    };
   },
   methods: {
     async fetchTimelineCSVData(url){

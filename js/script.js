@@ -26,6 +26,7 @@ const app = createApp({
     this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
     this.performers = await this.fetchCSVData("./data/artist-info.csv");
     await this.fetchArtistImg("./img/artist/");
+    
   },
   methods: {
     async fetchTimelineCSVData(url){
@@ -78,15 +79,15 @@ const app = createApp({
       for (let performer of this.performers) {
         const index = performer.id - 2;
         const pathId = path + performer.id;  
-        if (await this.imageExists(pathId + ".webp")) {
+        if (this.imageExists(pathId + ".webp")) {
           this.performers[index].image = pathId + ".webp";
-        } else if (await this.imageExists(pathId + ".gif")) {
+        } else if (this.imageExists(pathId + ".gif")) {
           this.performers[index].image = pathId + ".gif";
-        } else if (await this.imageExists(pathId + ".png")) {
+        } else if (this.imageExists(pathId + ".png")) {
           this.performers[index].image = pathId + ".png";
-        } else if (await this.imageExists(pathId + ".jpg")) {
+        } else if (this.imageExists(pathId + ".jpg")) {
           this.performers[index].image = pathId + ".jpg";
-        } else if (await this.imageExists(pathId + ".jpeg")) {
+        } else if (this.imageExists(pathId + ".jpeg")) {
           this.performers[index].image = pathId + ".jpeg";
         } else {
           this.performers[index].image = path + "logo.png";

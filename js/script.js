@@ -8,12 +8,7 @@ const app = createApp({
     main: [],
     lounge: []
   }),
-  async mounted() {
-    // Fetch CSV data and parse it
-    this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
-    this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
-    this.performers = await this.fetchCSVData("./data/artist-info.csv");
-    await this.fetchArtistImg("./img/artist/");
+  mounted(){
     window.onload = function () {
       // この中に、ローディングが完全に終わった後の処理を書く
       console.log("ページのすべてのリソースが読み込まれました！");
@@ -24,6 +19,13 @@ const app = createApp({
         loadingScreen.style.display = 'none';
       }
     };
+  },
+  async created() {
+    // Fetch CSV data and parse it
+    this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
+    this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
+    this.performers = await this.fetchCSVData("./data/artist-info.csv");
+    await this.fetchArtistImg("./img/artist/");
   },
   methods: {
     async fetchTimelineCSVData(url){
@@ -72,7 +74,7 @@ const app = createApp({
     async fetchArtistImg(path) {
       const response = await fetch(path);
       const files = await response.text();
-  
+
       for (let performer of this.performers) {
         const index = performer.id - 2;
         const pathId = path + performer.id;  
@@ -91,7 +93,7 @@ const app = createApp({
         }
       }
     },
-    async imageExists(url) {
+    imageExists(url) {
       const http = new XMLHttpRequest();
       http.open("HEAD", url, false);
       http.send();

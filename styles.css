@@ -1,0 +1,572 @@
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=IHina+Mincho:wght@400;500&display=swap');
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.round-border {
+  border-radius: 16px;
+  /* border-radius: max(0px, min(16px, (100% - 400px + 1px) * 9999)) / 16px; */
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-size: 100%;
+  background-color: #FFF;
+}
+
+.loading {
+  position: fixed;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(60, 60, 60);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: PixelMplus12 Bold;
+  font-size: 1.5rem;
+}
+
+.loading.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms;
+}
+
+.loading p {
+  font-family: "Major Mono Display", sans-serif;
+  animation: blink 150ms infinite;
+}
+
+.vertical-center{
+  margin: 0;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.horizontal-center{
+  margin: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flex-align-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-rows: auto;
+  grid-auto-flow: dense;
+}
+
+.script-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: -1;
+}
+
+.theme-color {
+  color: rgb(255, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.bg-image {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: -3;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.filter-layer {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  backdrop-filter: blur(100px) ,opacity(0%);
+}
+
+img{
+  width: 1920px;
+  height: 1020px;
+}
+
+.border-debug {
+  border-color: chartreuse;
+  border-style: dotted;
+}
+
+.sub-section {
+  display: block;
+  margin-block-end: 20px;
+  max-width: 600px;
+}
+
+.wider {
+  grid-column: span 6;
+}
+
+.wide {
+  grid-column: span 4;
+}
+
+.medium {
+  grid-column: span 3;
+}
+
+.slim {
+  grid-column: span 2;
+}
+
+.section-widthLimit {
+  max-width: 500px;
+}
+
+.sp-section {
+  position: relative;
+  top: 0%;
+  left: 0%;
+  max-width: 1600px;
+  padding: 5%;
+  margin: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: #FFF;
+
+}
+
+.keyvisual-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  top: 0%;
+  left: 0%;
+  border: 0%;
+}
+
+.keyvisual-container span {
+  display: inline;
+}
+
+.keyvisual-container a {
+  display: inline;
+  text-decoration: none;
+  color: white;
+}
+
+.keyvisual-defaults {
+  top: 0%;
+  left: 0%;
+  margin: 0 auto;
+  position: absolute;
+}
+
+.keyvisual-performer {
+  position: absolute;
+}
+
+.sm-footer-performer {
+  display: none;
+}
+
+.keyvisual-performer a {
+  line-height: 100%;
+  color: rgb(255, 0, 0);
+  font-size: 1rem;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  display: inline;
+}
+
+.keyvisual-performer a:hover {
+  color: black;
+}
+
+.title {
+  position: absolute;
+  top: 2.5vh;
+}
+
+.toptitle {
+  display: inline-block;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  color: rgb(255, 0, 0);
+}
+
+.info {
+  position: absolute;
+  bottom: 2.5vh;
+  left: 4vw;
+}
+
+.topinfo {
+  display: absolute;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2rem;
+  color: rgb(255, 0, 0);
+  /* background-color: rgb(0, 0, 0); */
+}
+
+.topinfo a:hover {
+  color: black;
+}
+
+.eventname {
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 8vw;
+  color: rgb(255, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
+  line-height: 60%;
+  text-align: center;
+}
+.eventname-sub {
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4vw;
+  color: rgb(255, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
+  line-height: 10%;
+}
+
+.eventname-container {
+  position: absolute;
+  top: 20%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Chivo Mono", monospace;
+  font-style: normal;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+p,
+span {
+  font-weight: 400;
+  color: black;
+  display: block;
+}
+
+h1 {
+  color: black;
+  font-size: 2rem;
+}
+
+h2 {
+  color: black;
+  font-size: 1.5rem;
+}
+
+h3 {
+  color: black;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1rem;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.external-link {
+  display: inline-block;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+.external-link:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+#issue-text {
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  background-color: white;
+  display: inline;
+  padding-left: 0px;
+  padding-right: 40px;
+  z-index: 1;
+  position: absolute;
+  top: 3%;
+  right: 0%;
+}
+
+.table {
+  display: block;
+}
+
+.t-head {
+  font-size: 0.8rem;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.t-body {
+  font-size: 0.8rem;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.grid-parent{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-parent-TT{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.grid-child{
+  min-width: 20vw;
+}
+
+.performer-frame {
+  min-width: 200px;
+  max-width: 400px;
+  padding-bottom: 30px;
+  padding-right: 30px;
+}
+
+.performer-frame p {
+  display: inline;
+  color: black;
+}
+
+.performer-detail {
+  display: block;
+  position: relative;
+}
+
+.intro {
+  position: absolute;
+  display: block;
+  max-width: 200px;
+  z-index: 1;
+}
+
+.sub-section p {
+  display: inline;
+}
+
+.performer-detail p {
+  position: relative;
+  width: 90%;
+  color: black;
+  font-size: small;
+}
+
+.performer-detail img {
+  display: block;
+  width: auto;
+  min-height: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.performer-frame h2 {
+  margin-top: 0%;
+  margin-bottom: 10px;
+}
+
+.performer-frame h2 {
+  color: black;
+}
+
+
+a:hover {
+  background-color: white;
+  color: rgb(0, 0, 0);
+}
+
+.map {
+  width: 95%;
+  max-width: 600px;
+  height: 40vh;
+}
+
+.nav-links {
+  position: fixed;
+  z-index: 2;
+  bottom: 2.5vh;
+  right: 5vw;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a:hover {
+  color: black;
+}
+
+.nav-elem {
+  top: 0;
+  left: 0;
+  font-family: "Chivo Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  background-color: red;
+  color: white;
+  font-size: 1.25rem;
+  text-align: left;
+  display: inline;
+  text-decoration: none;
+}
+
+footer {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.footer-bg {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(25, 74, 251, 0);
+  position: relative;
+}
+
+.logo-container {
+  position: absolute;
+  bottom: 20vh;
+  right: 5vw;
+  display: flex;
+  gap: 30px;
+}
+
+.logo-container img {
+  display: inline-block;
+  height: 50px;
+  object-fit: cover;
+}
+
+.footer-credit {
+  position: absolute;
+  top: 30vh;
+  right: 5vw;
+}
+
+.credits {
+  text-align: left;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  z-index: 1;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  padding-right: 10px;
+  display: block;
+  line-height: 90%;
+}
+
+@media (max-width: 768px) {
+  .grid-parent{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+
+  .grid-wrapper{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+  }
+
+  .title {
+    left: 0vw;
+  }
+
+  .title span {
+    font-size: 1.2rem;
+  }
+
+  .info {
+    left: 0vw;
+  }
+
+  .info p {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    right: 0vw;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+  }
+
+  .keyvisual-performer {
+    right: 0vw;
+  }
+
+  .keyvisual-performer a {
+    font-size: 0.9rem;
+  }
+}

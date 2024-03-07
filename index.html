@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<div id="app">
+
+    <head>
+        <title>NxPC Live Vol.66 キョクメン</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta property="og:description" content='NxPC Live Vol.68 SPACE DEBRIS -IAMAS x MAU x LIVECODING-' />
+        <meta property="og:title" content="NxPC Live Vol.68 SPACE DEBRIS -IAMAS x MAU x LIVECODING-" />
+        <meta property="og:url" content="https://nxpclab.info/vol.68" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://nxpclab.github.io/nxpc.live-vol.66/img/ogp.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://nxpclab.github.io/nxpc.live-vol.66/img/ogp.webp" />
+        <meta name="twitter:site" content="@nxpclab" />
+        <meta name="twitter:creator" content="@nxpclab" />
+        <script type="module" src="./js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script>
+            (function (d) {
+                var config = {
+                    kitId: 'xwb5glo',
+                    scriptTimeout: 3000,
+                    async: true
+                },
+                    h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+            })(document);
+        </script>
+        <link rel="icon" href="./img/logo/logo.png" />
+        <link rel="stylesheet" type="text/css" href="styles.css">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Chivo+Mono&family=DotGothic16&family=IBM+Plex+Mono&family=JetBrains+Mono&family=Nanum+Myeongjo&family=Zen+Antique&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="loading" id="loading">
+            <p>Now loading...</p>
+        </div>
+        
+        <div class="keyvisual-container">
+            <div class="bg-image">
+                <img src="./img/msrtainaka.jpeg" loading="lazy">
+            </div>
+            
+            <div style="display: flex;
+            justify-content: center;
+            align-items: center; height: 100vh; width: 100vw; position: absolute;">
+                <img src="img/SVG/date.svg" 
+                        style="
+                            display: block;
+                            width: 20vw;  
+                            height: 20vh;
+                            min-width: 250px;
+                            position: relative;
+                            top: -40vh;
+                    ">
+            </div>
+            <div  style="display: flex;
+            justify-content: center;
+            align-items: center; height: 100vh; width: 100vw; position: absolute;">
+                <img src="img/SVG/title.svg" 
+                        style="
+                            display: block;
+                            width: 40vw; 
+                            height: 40vh;
+                            min-width: 350px;
+                            position: relative;
+                    ">
+            </div>       
+                    
+            <div style="display: flex;
+            justify-content: center;
+            align-items: center; height: 100vh; width: 100vw; position: absolute;">  
+                <img src="img/SVG/guest.svg" 
+                    style="
+                        width: 20vw; 
+                        height: 20vh;
+                        top: 20vh;
+                        min-width: 250px;
+                        position: relative;
+                ">
+            </div>
+
+            <div style="display: flex;
+            justify-content: center;
+            align-items: center; height: 100vh; width: 100vw; position: absolute;">  
+                <img src="img/SVG/infoアセット 4.svg" 
+                    style="
+                        width: 20vw; 
+                        height: 20vh;
+                        top: 40vh;
+                        min-width: 250px;
+                        position: relative;
+                ">
+            </div>
+        </div>
+
+        <nav class="nav-links">
+            <a class="nav-elem" href="#about">About</a>
+            <a class="nav-elem" href="#timetable">Timetable</a>
+            <a class="nav-elem" href="#performer">Performer</a>
+            <a class="nav-elem" href="#top" id="goto-top">Top</a>
+            <script>
+                const toTop = document.querySelector("#goto-top");
+                toTop.addEventListener("click", () => {
+                    window.scrollTo(0, 0);
+                });
+            </script>
+        </nav>
+
+        <div id="about" class="sp-section round-border">
+
+            <div class="grid-wrapper">
+                <div class="sub-section theme-color wide">
+                    <h1>About</h1>
+                    <!-- Aboutセクションのコンテンツをここに追加 -->
+                    <br>
+                    <p class="para">
+                        NxPC.Labは、クラブやライブにおけるアーティストと観客の相互作用によってもたらされる場の臨場感を拡大し、ネットへも拡散させるためのメディアテクノロジーの実現を目指した研究機関です。
+                        <br><br>
+                        現代のメディア体験において必要とされる対話性、参加性をデバイス、インタフェース、ネットワークといったメディアテクノロジーを駆使することで、音楽体験を拡張し、音楽空間におけるコミュニケーションを次のステージへ導くための研究開発、イベントを実施しています。実験の場としてのイベントNxPC.Liveを中心に、レクチャーやワークショップ、ネットラジオなどの活動を行っています。
+                    </p>
+                </div>
+                <div class="sub-section theme-color medium">
+                    <h1>Access</h1>
+                    <br>
+                    <p>
+                        会場：Circus Tokyo
+                        <br>
+                        〒150-0002 東京都渋谷区渋谷３丁目２６−１６ 第５叶ビル 1F/B1F
+                    </p>
+                    <br><br>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.9270069066233!2d139.70339031514445!3d35.65416998020051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5b6e402423%3A0x37689da2d2d701a6!2sCircus+Tokyo!5e0!3m2!1sja!2sjp!4v1493100551282"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="map"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="timetable" class="sp-section round-border">
+            <h1>Timetable</h1>
+            <div class="grid-parent">
+                <div class="grid-child">
+                    <h3>Main Floor</h3>
+                    <table class="table theme-color ">
+                        <tbody class="t-body" v-for="p in main">
+                            <tr>
+                                <th scope="row">{{p.time}}</th>
+                                <td>{{p.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grid-child">
+                    <h3>Lounge Floor</h3>
+                    <table class="table theme-color ">
+                        <tbody class="t-body" v-for="p in lounge">
+                            <tr>
+                                <th scope="row">{{p.time}}</th>
+                                <td>{{p.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="performer" class="sp-section round-border">
+            <h1>Performer</h1>
+            <div class="grid-parent">
+                <div v-for="performer in performers" :key="performer.id" class="grid-child">
+                    <div class="performer-frame">
+                        <h3>{{ performer.name }}</h3>
+                        <div class="performer-detail">
+                            <img :src="performer.image" alt="Performer Image" loading="lazy">
+                            <p>{{performer.intro}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <footer>
+        <div class="footer-credit flex-horizontal">
+            <div class="credits">
+                <p>ビジュアル制作:</p>
+                <p>Jung Jieyun</p>
+                <p>Haruto Tokubo</p>
+                <p>Santa Naruse</p>
+                <br>
+                <p>Web制作:</p>
+                <p>Santa Naruse</p>
+                <p>Taichi Matsumoto</p>
+            </div>
+            <div class="credits">
+                <p>出演者:</p>
+                <div v-for="performer in performers" :index="performer.id">
+                    <p>{{performer.name}}</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</html>

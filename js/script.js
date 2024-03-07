@@ -12,7 +12,7 @@ const app = createApp({
     // Fetch CSV data and parse it
     this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
     this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
-    await this.fetchCSVData("./data/artist-info.csv");
+    this.performers = await this.fetchCSVData("./data/artist-info.csv");
     await this.fetchArtistImg("./img/artist/");
     window.onload = function () {
       // この中に、ローディングが完全に終わった後の処理を書く
@@ -32,15 +32,12 @@ const app = createApp({
       const arr = this.parseTimelineCSV(text)
       return arr
     },
-    fetchCSVData(url) {
+    async fetchCSVData(url) {
       // Fetch the CSV file
-      fetch(url)
-        .then((response) => response.text())
-        .then((csvData) => {
-          // Parse CSV
-          const performers = this.parseCSV(csvData);
-          this.performers = performers;
-        });
+      const csv = await fetch(url)
+      const text = await csv.text()
+      const arr = this.parseCSV(text)
+      return arr
     },
     parseTimelineCSV(csvData){
       const lines = csvData.split("\n");
@@ -72,36 +69,29 @@ const app = createApp({
       }
       return performers;
     },
-    fetchArtistImg(path) {
-      fetch(path)
-        .then((response) => response.text())
-        .then((files) => {
-          for (let performer of this.performers) {
-            const index = performer.id - 2;
-            const pathId = path + performer.id;
-            console.log(pathId);
-            if (this.imageExists(pathId + ".webp")) {
-              this.performers[index].image = pathId + ".webp";
-            }
-            else if (this.imageExists(pathId + ".gif")) {
-              this.performers[index].image = pathId + ".gif";
-            }
-            else if (this.imageExists(pathId + ".png")) {
-              this.performers[index].image = pathId + ".png";
-            }
-            else if (this.imageExists(pathId + ".jpg")) {
-              this.performers[index].image = pathId + ".jpg";
-            }
-            else if (this.imageExists(pathId + ".jpeg")) {
-              this.performers[index].image = pathId + ".jpeg";
-            }
-            else {
-              this.performers[index].image = path + "logo.png";
-            }
-          }
-        });
+    async fetchArtistImg(path) {
+      const response = await fetch(path);
+      const files = await response.text();
+  
+      for (let performer of this.performers) {
+        const index = performer.id - 2;
+        const pathId = path + performer.id;  
+        if (await this.imageExists(pathId + ".webp")) {
+          this.performers[index].image = pathId + ".webp";
+        } else if (await this.imageExists(pathId + ".gif")) {
+          this.performers[index].image = pathId + ".gif";
+        } else if (await this.imageExists(pathId + ".png")) {
+          this.performers[index].image = pathId + ".png";
+        } else if (await this.imageExists(pathId + ".jpg")) {
+          this.performers[index].image = pathId + ".jpg";
+        } else if (await this.imageExists(pathId + ".jpeg")) {
+          this.performers[index].image = pathId + ".jpeg";
+        } else {
+          this.performers[index].image = path + "logo.png";
+        }
+      }
     },
-    imageExists(url) {
+    async imageExists(url) {
       const http = new XMLHttpRequest();
       http.open("HEAD", url, false);
       http.send();

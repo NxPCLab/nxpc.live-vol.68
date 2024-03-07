@@ -69,6 +69,7 @@ const app = createApp({
       return performers;
     },
     async getPerformerImage(path){
+      
       for (let performer of this.performers) {
         const index = performer.id - 2;
         const pathId = path + performer.id;  
@@ -86,6 +87,7 @@ const app = createApp({
           this.performers[index].image = path + "logo.png";
         }
       }
+      return new Promise(resolve => {resolve()});
     },
     async imageExists(path) {
         const response = await fetch(path, { method: 'HEAD' });

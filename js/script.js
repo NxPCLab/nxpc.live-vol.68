@@ -8,11 +8,12 @@ const app = createApp({
     main: [],
     lounge: []
   }),
-  mounted() {
+  async mounted() {
     // Fetch CSV data and parse it
-    this.fetchCSVData("./data/artist-info.csv");
-    this.fetchArtistImg("./img/artist/");
-    this.createTimeline();
+    this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
+    this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
+    await this.fetchCSVData("./data/artist-info.csv");
+    await this.fetchArtistImg("./img/artist/");
     window.onload = function () {
       // この中に、ローディングが完全に終わった後の処理を書く
       console.log("ページのすべてのリソースが読み込まれました！");
@@ -25,10 +26,6 @@ const app = createApp({
     };
   },
   methods: {
-    async createTimeline(){
-      this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
-      this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
-    },
     async fetchTimelineCSVData(url){
       const csv = await fetch(url)
       const text = await csv.text()

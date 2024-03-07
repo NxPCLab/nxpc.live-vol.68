@@ -8,9 +8,7 @@ const app = createApp({
     main: [],
     lounge: []
   }),
-  mounted(){
-  },
-  async created(){
+  async mounted(){
     this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
     this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
     this.performers = await this.fetchCSVData("./data/artist-info.csv");

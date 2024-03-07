@@ -9,6 +9,12 @@ const app = createApp({
     lounge: []
   }),
   mounted(){
+  },
+  async created(){
+    this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
+    this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
+    this.performers = await this.fetchCSVData("./data/artist-info.csv");
+    await this.getPerformerImage("./img/artist/");
     window.onload = function () {
       // この中に、ローディングが完全に終わった後の処理を書く
       console.log("ページのすべてのリソースが読み込まれました！");
@@ -19,14 +25,6 @@ const app = createApp({
         loadingScreen.style.display = 'none';
       }
     };
-  },
-  async created() {
-    // Fetch CSV data and parse it
-    this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
-    this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
-    this.performers = await this.fetchCSVData("./data/artist-info.csv");
-    await this.fetchArtistImg("./img/artist/");
-    
   },
   methods: {
     async fetchTimelineCSVData(url){
@@ -72,33 +70,32 @@ const app = createApp({
       }
       return performers;
     },
-    async fetchArtistImg(path) {
-      const response = await fetch(path);
-      const files = await response.text();
-
+    async getPerformerImage(path){
       for (let performer of this.performers) {
         const index = performer.id - 2;
         const pathId = path + performer.id;  
-        if (this.imageExists(pathId + ".webp")) {
+        if (await this.imageExists(pathId + ".webp")) {
           this.performers[index].image = pathId + ".webp";
-        } else if (this.imageExists(pathId + ".gif")) {
+        } else if (await this.imageExists(pathId + ".gif")) {
           this.performers[index].image = pathId + ".gif";
-        } else if (this.imageExists(pathId + ".png")) {
+        } else if (await this.imageExists(pathId + ".png")) {
           this.performers[index].image = pathId + ".png";
-        } else if (this.imageExists(pathId + ".jpg")) {
+        } else if (await this.imageExists(pathId + ".jpg")) {
           this.performers[index].image = pathId + ".jpg";
-        } else if (this.imageExists(pathId + ".jpeg")) {
+        } else if (await this.imageExists(pathId + ".jpeg")) {
           this.performers[index].image = pathId + ".jpeg";
         } else {
           this.performers[index].image = path + "logo.png";
         }
       }
     },
-    imageExists(url) {
-      const http = new XMLHttpRequest();
-      http.open("HEAD", url, false);
-      http.send();
-      return http.status !== 404;
+    async imageExists(path) {
+        const response = await fetch(path, { method: 'HEAD' });
+        if (response.ok) {
+          // Status code 200 - Path exists
+          return true;
+        } 
+        return false;
     }
   },
 });

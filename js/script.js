@@ -17,7 +17,7 @@ const app = createApp({
     main: [],
     lounge: []
   }),
-  async mounted(){
+  async created(){
     this.main = await this.fetchTimelineCSVData("./data/mainTimetable.csv");
     this.lounge = await this.fetchTimelineCSVData("./data/loungeTimetable.csv");
     this.performers = await this.fetchCSVData("./data/artist-info.csv");

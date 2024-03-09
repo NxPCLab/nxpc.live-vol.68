@@ -68,7 +68,6 @@ const app = createApp({
       return performers;
     },
     async getPerformerImage(path){
-      
       for (let performer of this.performers) {
         const index = performer.id - 2;
         const pathId = path + performer.id;  
